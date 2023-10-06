@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link href="style.css" rel="stylesheet" />
+    <title>Verificador de chaves</title>
+  </head>
+
+  <body>
+    <div title="Realizar Ação" class="voltar-pagina" onclick="voltarPagina()">
+      <i class="bx bx-log-out"></i>
+    </div>
+
+    <main>
+      <section>
+        <br />
+        <h1>
+          Verifique as informações da sua chave
+          <i class="bx bxs-badge-check"></i>
+        </h1>
+        <input
+          type="text"
+          id="chaveAcessoInput"
+          placeholder="chave de acesso"
+        />
+        <div id="mensagemErro" class="error-message"></div>
+        <div class="button-container">
+          <div class="copied-info-message" id="copiedInfoMessage"></div>
+          <button
+            id="verificarButton"
+            class="verificar-button"
+            title="Pesquisar Chave"
+            style="font-size: 16px !important"
+          >
+            <i class="bx bx-search"></i>Pesquisar
+          </button>
+          <button
+            id="limparButton"
+            class="limpar-button"
+            title="Apagar Chave"
+            style="font-size: 16px !important"
+          >
+            <i class="bx bxs-eraser"></i>Apagar
+          </button>
+          <button
+            id="copiarButton"
+            class="copiar-button"
+            title="Copiar Informações"
+            style="font-size: 16px !important; border-right: none"
+          >
+            <i class="bx bx-copy"></i> Copiar
+          </button>
+
+          <div id="mensagemErro"></div>
+        </div>
+        <div id="chavesUtilizadasContainer"></div>
+        <div class="result-container" id="resultContainer"></div>
+      </section>
+      <section>
+        <hr />
+        <h2 class="subtitle">Informações da Chave de Acesso</h2>
+        <div id="infoContainer">
+          <div class="chave-box" id="chave-box">
+            <span class="chave-title">UF:</span>
+            <span title="Clique para copiar" id="ufInfo"></span>
+          </div>
+          <div class="chave-box" id="chave-box">
+            <span class="chave-title">Ano/Mês:</span>
+            <span title="Clique para copiar" id="anoMesInfo"></span>
+          </div>
+          <div class="chave-box" id="chave-box">
+            <span class="chave-title">CNPJ:</span>
+            <span title="Clique para copiar" id="cnpjInfo"></span>
+          </div>
+          <div class="chave-box" id="chave-box">
+            <span class="chave-title">Modelo:</span>
+            <span title="Clique para copiar" id="modeloInfo"></span>
+          </div>
+          <div class="chave-box" id="chave-box">
+            <span class="chave-title">Série:</span>
+            <span title="Clique para copiar" id="serieInfo"></span>
+          </div>
+          <div class="chave-box" id="chave-box">
+            <span class="chave-title">Número da NF:</span>
+            <span title="Clique para copiar" id="numeroNFInfo"></span>
+          </div>
+          <div class="chave-box" id="chave-box">
+            <span class="chave-title">Forma de Emissão:</span>
+            <span title="Clique para copiar" id="formaEmissaoInfo"></span>
+          </div>
+          <div class="chave-box" id="chave-box">
+            <span class="chave-title">Código Numérico:</span>
+            <span title="Clique para copiar" id="codigoNumericoInfo"></span>
+          </div>
+          <div class="chave-box" id="chave-box">
+            <span class="chave-title">Dígito Verificador:</span>
+            <span title="Clique para copiar" id="digitoVerificadorInfo"></span>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <p class="social">
+        <a rel="noopener" title="LinkedIn" href="https://www.linkedin.com/in/nicolaspenatti/" target="_blank">
+          <i class="bx bxl-linkedin-square" style="color: #0a66c2"></i>
+        </a>
+      </p>
+
+      <p>Desenvolvido por Nicolas Penatti</p>
+      <p>Versão 1.5 - Outubro/2023</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {});
+    </script>
+  </body>
+</html>
