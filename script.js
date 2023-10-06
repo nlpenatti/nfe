@@ -1,1 +1,358 @@
-document.getElementById("verificarButton").addEventListener("click",verificar);document.getElementById("limparButton").addEventListener("click",limpar);document.getElementById("chaveAcessoInput").addEventListener("keydown",function(e){if(e.key==="Enter"){verificar()}});function verificarChaveAcesso(e){const o=document.getElementById("mensagemErro");if(e.length<44){exibirMensagemErro("A sua chave possui menos de 44 números.");return null}else if(e.length>44){exibirMensagemErro("A sua chave possui mais de 44 números.");return null}else if(!/^\d+$/.test(e)){exibirMensagemErro("A chave não pode possuir letras e números, por favor, verifique");return null}const t=e.substr(0,2);const n=e.substr(2,4);const a=e.substr(6,14);const i=e.substr(20,2);const s=e.substr(22,3);const r=e.substr(25,9);const c=e.substr(34,1);const d=e.substr(35,8);const l=e.substr(43,1);const m={11:"Rondônia",12:"Acre",13:"Amazonas",14:"Roraima",15:"Pará",16:"Amapá",17:"Tocantins",21:"Maranhão",22:"Piauí",23:"Ceará",24:"Rio Grande do Norte",25:"Paraíba",26:"Pernambuco",27:"Alagoas",28:"Sergipe",29:"Bahia",31:"Minas Gerais",32:"Espírito Santo",33:"Rio de Janeiro",35:"São Paulo",41:"Paraná",42:"Santa Catarina",43:"Rio Grande do Sul",50:"Mato Grosso do Sul",51:"Mato Grosso",52:"Goiás",53:"Distrito Federal"};const f=m[t]||"UF desconhecida";let u="";let I="";if(i==="01"){u="Modelo 01";I="(01) Nota Fiscal 1/1ª"}else if(i==="02"){u="Modelo 02";I="(02) Nota Fiscal de Venda a Consumidor"}else if(i==="04"){u="Modelo 04";I="(04) Nota Fiscal de Produtor"}else if(i==="06"){u="Modelo 06";I="(06) Nota Fiscal/Conta de Energia Elétrica"}else if(i==="07"){u="Modelo 07";I="(07) Nota Fiscal de Serviço de Transporte"}else if(i==="08"){u="Modelo 08";I="(08) Conhecimento de Transporte Rodoviário de Cargas"}else if(i==="09"){u="Modelo 09";I="(09) Conhecimento de Transporte Aquaviário de Cargas"}else if(i==="10"){u="Modelo 10";I="(10) Conhecimento Aéreo"}else if(i==="11"){u="Modelo 11";I="(11) Conhecimento de Transporte Ferroviário de Cargas"}else if(i==="13"){u="Modelo 13";I="(13) Bilhete de Passagem Rodoviário"}else if(i==="14"){u="Modelo 14";I="(14) Bilhete de Passagem Aquaviário"}else if(i==="15"){u="Modelo 15";I="(15) Bilhete de Passagem e Nota de Bagagem"}else if(i==="17"){u="Modelo 17";I="(17) Despacho de Transporte"}else if(i==="16"){u="Modelo 16";I="(16) Bilhete de Passagem Ferroviário"}else if(i==="18"){u="Modelo 18";I="(18) Resumo de Movimento Diário"}else if(i==="20"){u="Modelo 20";I="(20) Ordem de Coleta de Cargas"}else if(i==="21"){u="Modelo 21";I="(21) Nota Fiscal de Serviço de Comunicação"}else if(i==="22"){u="Modelo 22";I="(22) Nota Fiscal de Serviço de Telecomunicação"}else if(i==="23"){u="Modelo 23";I="(23) GNRE"}else if(i==="24"){u="Modelo 24";I="(24) Autorização de Carregamento e Transporte"}else if(i==="25"){u="Modelo 25";I="(25) Manifesto de Carga"}else if(i==="26"){u="Modelo 26";I="(26) Conhecimento de Transporte Multimodal de Cargas"}else if(i==="27"){u="Modelo 27";I="(27) Nota Fiscal De Transporte Ferroviário De Carga"}else if(i==="28"){u="Modelo 28";I="(28) Nota Fiscal/Conta de Fornecimento de Gás Canalizado"}else if(i==="29"){u="Modelo 29";I="(29) Nota Fiscal/Conta De Fornecimento D'água Canalizada"}else if(i==="55"){u="Modelo 55";I="(55) Nota Fiscal Eletrônica - NF-e"}else if(i==="57"){u="Modelo 57";I="(57) Conhecimento de Transporte Eletrônico - CT-e"}else if(i==="58"){u="Modelo 58";I="(58) Cupom Fiscal Eletrônico CF-e-SAT"}else if(i==="59"){u="Modelo 59";I="(59) Cupom Fiscal Eletrônico - CF-e"}else if(i==="60"){u="Modelo 60";I="(60) Cupom Fiscal Eletrônico CF-e-ECF"}else if(i==="65"){u="Modelo 65";I="(65) NFe para Consumidor Final"}else{u="Modelo "+i;I="("+i+") - Modelo desconhecido"}return{uf:t,ufName:f,anoMes:n,cnpj:a,modelo:u,modeloNome:I,serie:s,numeroNF:r,formaEmissao:c,codigoNumerico:d,digitoVerificador:l}}function verificar(){const e=document.getElementById("chaveAcessoInput").value;const o=verificarChaveAcesso(e);if(o){exibirInformacoesChave(o);const t=formatarInformacoesChave(o);copiarInformacoes(t);exibirCaixaInformacoesCopiadas()}}function exibirMensagemErro(e){const o=document.getElementById("mensagemErro");o.textContent=e;o.style.display="block";setTimeout(function(){o.style.display="none";o.textContent=""},3e3)}function exibirInformacoesChave(e){document.getElementById("ufInfo").textContent=`${e.uf} - ${e.ufName}`;document.getElementById("anoMesInfo").textContent=e.anoMes;const o=document.getElementById("cnpjInfo");o.textContent=formatarCNPJ(e.cnpj);document.getElementById("modeloInfo").textContent=e.modeloNome;const t=document.getElementById("serieInfo");const n=e.serie;t.textContent=n;if(n==="222"||n==="999"||n==="111"){t.style.color="tomato";t.style.fontStyle="italic";t.textContent+=" - Série não identificada."}else{t.style.color="inherit";t.style.fontStyle="normal"}t.addEventListener("mouseout",function(){document.getElementById("chaveAcessoInput").innerHTML=""});document.getElementById("numeroNFInfo").textContent=e.numeroNF;document.getElementById("formaEmissaoInfo").textContent=e.formaEmissao;document.getElementById("codigoNumericoInfo").textContent=e.codigoNumerico;document.getElementById("digitoVerificadorInfo").textContent=e.digitoVerificador}function verificar(){const e=document.getElementById("chaveAcessoInput").value;verificarChaveAcesso(e);const o=verificarChaveAcesso(e);if(o){exibirInformacoesChave(o);const t=formatarInformacoesChave(o);copiarInformacoes(t);exibirCaixaInformacoesCopiadas()}}function exibirCaixaInformacoesCopiadas(){const e=document.getElementById("copiedInfoBox");e.classList.add("show");setTimeout(function(){e.classList.remove("show")},1e4)}function limpar(){document.getElementById("chaveAcessoInput").value="";document.getElementById("ufInfo").textContent="";document.getElementById("anoMesInfo").textContent="";document.getElementById("cnpjInfo").textContent="";document.getElementById("modeloInfo").textContent="";document.getElementById("serieInfo").textContent="";document.getElementById("numeroNFInfo").textContent="";document.getElementById("formaEmissaoInfo").textContent="";document.getElementById("codigoNumericoInfo").textContent="";document.getElementById("digitoVerificadorInfo").textContent="";document.getElementById("exibirMensagemErro").value=""}function formatarCNPJ(e){const o=e.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/,"$1.$2.$3/$4-$5");return o}document.getElementById("copiarButton").addEventListener("click",copiarInformacoes);function copiarInformacoes(){const e="UF: ";const o=document.getElementById("ufInfo").textContent;const t="Ano/Mês: ";const n=document.getElementById("anoMesInfo").textContent;const a="CNPJ: ";const i=document.getElementById("cnpjInfo").textContent;const s="Modelo: ";const r=document.getElementById("modeloInfo").textContent;const c="Série: ";const d=document.getElementById("serieInfo").textContent;const l="Número NF: ";const m=document.getElementById("numeroNFInfo").textContent;const f="Forma de Emissão: ";const u=document.getElementById("formaEmissaoInfo").textContent;const I="Código Numérico: ";const C=document.getElementById("codigoNumericoInfo").textContent;const g="Dígito Verificador: ";const E=document.getElementById("digitoVerificadorInfo").textContent;const v=document.getElementById("chaveAcessoInput").value;const p=`Chave de Acesso: ${v}\n${e}${o}\n${t}${n}\n${a}${i}\n${s}${r}\n${c}${d}\n${l}${m}\n${f}${u}\n${I}${C}\n${g}${E}`;navigator.clipboard.writeText(p).then(()=>{const e=document.getElementById("copiedInfoMessage");e.textContent="As informações da chave de acesso foram copiadas!";e.style.display="block";setTimeout(()=>{e.style.display="none"},2e3)}).catch(e=>{console.error("Erro ao copiar as informações:",e)})}function voltarPagina(){window.location.href="https://validador.info/"}const chaveBoxes=document.querySelectorAll(".chave-box");chaveBoxes.forEach(function(o){o.addEventListener("click",function(){const e=o.textContent.trim();if(e!==""){navigator.clipboard.writeText(e).then(()=>{alert("Informação copiada com sucesso!")}).catch(e=>{console.error("Erro ao copiar a informação!:",e)})}})});
+  document.getElementById("verificarButton").addEventListener("click", verificar);
+document.getElementById("limparButton").addEventListener("click", limpar);
+document.getElementById("chaveAcessoInput").addEventListener("keydown",
+  function (event) {
+    if (event.key === "Enter") {
+      verificar();
+    }
+  });
+
+  function verificarChaveAcesso(chave) {
+const mensagemErroElement = document.getElementById("mensagemErro");
+
+if (chave.length < 44) {
+    exibirMensagemErro("A sua chave possui menos de 44 números.");
+    return null;
+} else if (chave.length > 44) {
+    exibirMensagemErro("A sua chave possui mais de 44 números.");
+    return null;
+} else if (!/^\d+$/.test(chave)) {
+    exibirMensagemErro("A chave não pode possuir letras e números, por favor, verifique");
+    return null;
+}
+
+const uf = chave.substr(0, 2);
+const anoMes = chave.substr(2, 4);
+const cnpj = chave.substr(6, 14);
+const modeloCodigo = chave.substr(20, 2);
+const serie = chave.substr(22, 3);
+const numeroNF = chave.substr(25, 9);
+const formaEmissao = chave.substr(34, 1);
+const codigoNumerico = chave.substr(35, 8);
+const digitoVerificador = chave.substr(43, 1);
+  const ufNames = {
+    "11": "Rondônia",
+    "12": "Acre",
+    "13": "Amazonas",
+    "14": "Roraima",
+    "15": "Pará",
+    "16": "Amapá",
+    "17": "Tocantins",
+    "21": "Maranhão",
+    "22": "Piauí",
+    "23": "Ceará",
+    "24": "Rio Grande do Norte",
+    "25": "Paraíba",
+    "26": "Pernambuco",
+    "27": "Alagoas",
+    "28": "Sergipe",
+    "29": "Bahia",
+    "31": "Minas Gerais",
+    "32": "Espírito Santo",
+    "33": "Rio de Janeiro",
+    "35": "São Paulo",
+    "41": "Paraná",
+    "42": "Santa Catarina",
+    "43": "Rio Grande do Sul",
+    "50": "Mato Grosso do Sul",
+    "51": "Mato Grosso",
+    "52": "Goiás",
+    "53": "Distrito Federal"
+  };
+
+  const ufName = ufNames[uf] || "UF desconhecida";
+
+  let modelo = "";
+  let modeloNome = "";
+
+if (modeloCodigo === "01") {
+modelo = "Modelo 01";
+modeloNome = "(01) Nota Fiscal 1/1ª";
+} else if (modeloCodigo === "02") {
+modelo = "Modelo 02";
+modeloNome = "(02) Nota Fiscal de Venda a Consumidor";
+} else if (modeloCodigo === "04") {
+modelo = "Modelo 04";
+modeloNome = "(04) Nota Fiscal de Produtor";
+} else if (modeloCodigo === "06") {
+modelo = "Modelo 06";
+modeloNome = "(06) Nota Fiscal/Conta de Energia Elétrica";
+} else if (modeloCodigo === "07") {
+modelo = "Modelo 07";
+modeloNome = "(07) Nota Fiscal de Serviço de Transporte";
+} else if (modeloCodigo === "08") {
+modelo = "Modelo 08";
+modeloNome = "(08) Conhecimento de Transporte Rodoviário de Cargas";
+} else if (modeloCodigo === "09") {
+modelo = "Modelo 09";
+modeloNome = "(09) Conhecimento de Transporte Aquaviário de Cargas";
+} else if (modeloCodigo === "10") {
+modelo = "Modelo 10";
+modeloNome = "(10) Conhecimento Aéreo";
+} else if (modeloCodigo === "11") {
+modelo = "Modelo 11";
+modeloNome = "(11) Conhecimento de Transporte Ferroviário de Cargas";
+} else if (modeloCodigo === "13") {
+modelo = "Modelo 13";
+modeloNome = "(13) Bilhete de Passagem Rodoviário";
+} else if (modeloCodigo === "14") {
+modelo = "Modelo 14";
+modeloNome = "(14) Bilhete de Passagem Aquaviário";
+} else if (modeloCodigo === "15") {
+modelo = "Modelo 15";
+modeloNome = "(15) Bilhete de Passagem e Nota de Bagagem";
+} else if (modeloCodigo === "17") {
+modelo = "Modelo 17";
+modeloNome = "(17) Despacho de Transporte";
+} else if (modeloCodigo === "16") {
+modelo = "Modelo 16";
+modeloNome = "(16) Bilhete de Passagem Ferroviário";
+} else if (modeloCodigo === "18") {
+modelo = "Modelo 18";
+modeloNome = "(18) Resumo de Movimento Diário";
+} else if (modeloCodigo === "20") {
+modelo = "Modelo 20";
+modeloNome = "(20) Ordem de Coleta de Cargas";
+} else if (modeloCodigo === "21") {
+modelo = "Modelo 21";
+modeloNome = "(21) Nota Fiscal de Serviço de Comunicação";
+} else if (modeloCodigo === "22") {
+modelo = "Modelo 22";
+modeloNome = "(22) Nota Fiscal de Serviço de Telecomunicação";
+} else if (modeloCodigo === "23") {
+modelo = "Modelo 23";
+modeloNome = "(23) GNRE";
+} else if (modeloCodigo === "24") {
+modelo = "Modelo 24";
+modeloNome = "(24) Autorização de Carregamento e Transporte";
+} else if (modeloCodigo === "25") {
+modelo = "Modelo 25";
+modeloNome = "(25) Manifesto de Carga";
+} else if (modeloCodigo === "26") {
+modelo = "Modelo 26";
+modeloNome = "(26) Conhecimento de Transporte Multimodal de Cargas";
+} else if (modeloCodigo === "27") {
+modelo = "Modelo 27";
+modeloNome = "(27) Nota Fiscal De Transporte Ferroviário De Carga";
+} else if (modeloCodigo === "28") {
+modelo = "Modelo 28";
+modeloNome = "(28) Nota Fiscal/Conta de Fornecimento de Gás Canalizado";
+} else if (modeloCodigo === "29") {
+modelo = "Modelo 29";
+modeloNome = "(29) Nota Fiscal/Conta De Fornecimento D'água Canalizada";
+} else if (modeloCodigo === "55") {
+modelo = "Modelo 55";
+modeloNome = "[55] Nota Fiscal Eletrônica";
+} else if (modeloCodigo === "57") {
+modelo = "Modelo 57";
+modeloNome = "(57) Conhecimento de Transporte Eletrônico - CT-e";
+} else if (modeloCodigo === "58") {
+modelo = "Modelo 58";
+modeloNome = "(58) Cupom Fiscal Eletrônico CF-e-SAT";
+} else if (modeloCodigo === "59") {
+modelo = "Modelo 59";
+modeloNome = "(59) Cupom Fiscal Eletrônico - CF-e";
+} else if (modeloCodigo === "60") {
+modelo = "Modelo 60";
+modeloNome = "(60) Cupom Fiscal Eletrônico CF-e-ECF";
+} else if (modeloCodigo === "65") {
+modelo = "Modelo 65";
+modeloNome = "(65) NFe para Consumidor Final";
+} else {
+modelo = "Modelo " + modeloCodigo;
+modeloNome = "(" + modeloCodigo + ") - Modelo desconhecido";
+}
+
+
+  return {
+    uf,
+    ufName,
+    anoMes,
+    cnpj,
+    modelo,
+    modeloNome,
+    serie,
+    numeroNF,
+    formaEmissao,
+    codigoNumerico,
+    digitoVerificador
+  };
+}
+
+function verificar() {
+const chaveAcesso = document.getElementById("chaveAcessoInput").value;
+const informacoesChave = verificarChaveAcesso(chaveAcesso);
+
+if (informacoesChave) {
+  exibirInformacoesChave(informacoesChave);
+
+
+  const informacoesFormatadas = formatarInformacoesChave(informacoesChave);
+    copiarInformacoes(informacoesFormatadas);
+
+
+    exibirCaixaInformacoesCopiadas();
+}
+}
+function exibirMensagemErro(mensagem) {
+const mensagemErroElement = document.getElementById("mensagemErro");
+mensagemErroElement.textContent = mensagem;
+mensagemErroElement.style.display = "block";
+
+setTimeout(function () {
+    mensagemErroElement.style.display = "none";
+    mensagemErroElement.textContent = "";
+}, 3000);
+}
+
+function exibirInformacoesChave(informacoes) {
+  document.getElementById('ufInfo').textContent = `${informacoes.uf} - ${informacoes.ufName}`;
+  document.getElementById('anoMesInfo').textContent = informacoes.anoMes;
+
+
+  const cnpjInfo = document.getElementById('cnpjInfo');
+  cnpjInfo.textContent = formatarCNPJ(informacoes.cnpj);
+
+  document.getElementById('modeloInfo').textContent = informacoes.modeloNome;
+
+  const serieElement = document.getElementById('serieInfo');
+  const serieValue = informacoes.serie;
+
+  serieElement.textContent = serieValue;
+
+
+  if (serieValue === '222' || serieValue === '999' || serieValue === '111') {
+    serieElement.style.color = 'tomato';
+    serieElement.style.fontStyle = 'italic';
+    serieElement.textContent += ' - Série não identificada.';
+  } else {
+    serieElement.style.color = 'inherit';
+    serieElement.style.fontStyle = 'normal';
+  }
+
+  serieElement.addEventListener('mouseout', function () {
+    document.getElementById('chaveAcessoInput').innerHTML = '';
+  });
+
+  document.getElementById('numeroNFInfo').textContent = informacoes.numeroNF;
+  document.getElementById('formaEmissaoInfo').textContent = informacoes.formaEmissao;
+  document.getElementById('codigoNumericoInfo').textContent = informacoes.codigoNumerico;
+  document.getElementById('digitoVerificadorInfo').textContent = informacoes.digitoVerificador;
+}
+
+
+function verificar() {
+  const chaveAcesso = document.getElementById("chaveAcessoInput").value;
+  verificarChaveAcesso(chaveAcesso);
+
+   Verifica se a chave é válida
+  const informacoesChave = verificarChaveAcesso(chaveAcesso);
+
+  if (informacoesChave) {
+
+    exibirInformacoesChave(informacoesChave);
+
+    const informacoesFormatadas = formatarInformacoesChave(informacoesChave);
+    copiarInformacoes(informacoesFormatadas);
+
+    exibirCaixaInformacoesCopiadas();
+
+  } 
+}
+
+
+function exibirCaixaInformacoesCopiadas() {
+  const copiedInfoBox = document.getElementById("copiedInfoBox");
+  copiedInfoBox.classList.add("show");
+
+  setTimeout(function () {
+    copiedInfoBox.classList.remove("show");
+  }, 10000);
+}
+
+function limpar() {
+  document.getElementById("chaveAcessoInput").value = "";
+  document.getElementById("ufInfo").textContent = "";
+  document.getElementById("anoMesInfo").textContent = "";
+  document.getElementById("cnpjInfo").textContent = "";
+  document.getElementById("modeloInfo").textContent = "";
+  document.getElementById("serieInfo").textContent = "";
+  document.getElementById("numeroNFInfo").textContent = "";
+  document.getElementById("formaEmissaoInfo").textContent = "";
+  document.getElementById("codigoNumericoInfo").textContent = "";
+  document.getElementById("digitoVerificadorInfo").textContent = "";
+  document.getElementById("exibirMensagemErro").value = "";
+}
+
+function formatarCNPJ(cnpj) {
+  const cnpjFormatado = cnpj.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5");
+  return cnpjFormatado;
+}
+
+document.getElementById("copiarButton").addEventListener("click", copiarInformacoes);
+
+function copiarInformacoes() {
+const ufCaixa = "UF: ";
+const ufInfo = document.getElementById('ufInfo').textContent;
+const anoMesCaixa = "Ano/Mês: ";
+const anoMesInfo = document.getElementById('anoMesInfo').textContent;
+const cnpjCaixa = "CNPJ: ";
+const cnpjInfo = document.getElementById('cnpjInfo').textContent;
+const modeloCaixa = "Modelo: ";
+const modeloInfo = document.getElementById('modeloInfo').textContent;
+const serieCaixa = "Série: ";
+const serieInfo = document.getElementById('serieInfo').textContent;
+const numeroNFCaixa = "Número NF: ";
+const numeroNFInfo = document.getElementById('numeroNFInfo').textContent;
+const formaEmissaoCaixa = "Forma de Emissão: ";
+const formaEmissaoInfo = document.getElementById('formaEmissaoInfo').textContent;
+const codigoNumericoCaixa = "Código Numérico: ";
+const codigoNumericoInfo = document.getElementById('codigoNumericoInfo').textContent;
+const digitoVerificadorCaixa = "Dígito Verificador: ";
+const digitoVerificadorInfo = document.getElementById('digitoVerificadorInfo').textContent;
+
+const chaveAcessoInput = document.getElementById("chaveAcessoInput").value;
+
+const informacoesCopiadas =
+`Chave de Acesso: ${chaveAcessoInput}\n${ufCaixa}${ufInfo}\n${anoMesCaixa}${anoMesInfo}\n${cnpjCaixa}${cnpjInfo}\n${modeloCaixa}${modeloInfo}\n${serieCaixa}${serieInfo}\n${numeroNFCaixa}${numeroNFInfo}\n${formaEmissaoCaixa}${formaEmissaoInfo}\n${codigoNumericoCaixa}${codigoNumericoInfo}\n${digitoVerificadorCaixa}${digitoVerificadorInfo}`;
+
+navigator.clipboard.writeText(informacoesCopiadas)
+.then(() => {
+  const copiedInfoMessage = document.getElementById('copiedInfoMessage');
+  copiedInfoMessage.textContent = 'As informações da chave de acesso foram copiadas!';
+  copiedInfoMessage.style.display = 'block';
+
+  setTimeout(() => {
+    copiedInfoMessage.style.display = 'none';
+  }, 2000);
+})
+.catch((error) => {
+  console.error("Erro ao copiar as informações:", error);
+});
+}
+
+
+function voltarPagina() {
+window.location.href = "https://validador.info/";
+}
+
+
+const chaveBoxes = document.querySelectorAll(".chave-box");
+
+
+chaveBoxes.forEach(function(chaveBox) {
+  chaveBox.addEventListener("click", function() {
+    const chaveTexto = chaveBox.textContent.trim();
+
+    if (chaveTexto !== "") {
+      navigator.clipboard.writeText(chaveTexto)
+        .then(() => {
+          alert("Informação copiada com sucesso!");
+        })
+        .catch((error) => {
+          console.error("Erro ao copiar a informação!:", error);
+        });
+    }
+  });
+});
+
