@@ -1,0 +1,274 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Poppins:ital,wght@0,300;0,400;0,600;1,300&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,300;1,700&display=swap');
+
+.button-container button {
+  border-right: 1px solid #5e5858; /* Adicione uma borda direita com 1 pixel de espessura */
+  border-radius: 0; /* Remove a borda arredondada */
+  padding: 20px 20px; /* Ajuste a altura da barra vertical alterando o valor do padding (5px para cima/baixo, 10px para esquerda/direita) */
+  height: 30px; /* Ajuste a altura do botão conforme necessário para alinhar com a barra */
+  line-height: 10px; /* Igual à altura do botão para centralizar o texto verticalmente */
+}
+
+
+  * {
+      font-family: 'Poppins';
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+
+  }
+
+  .button-container {
+  text-align: center; /* Alinha o conteúdo centralmente */
+  margin-top: 10px; /* Ajuste a margem superior conforme necessário */
+  }
+
+
+
+hr {
+    border: none;
+    background-color: #5e5858;
+    border-top: 1px solid #5e5858;
+    height: 1px;
+    width: 80%;
+    margin: 0 auto; 
+}
+
+
+.verificar-button > i,
+.limpar-button > i,
+.copiar-button > i {
+    color: white;
+    margin-right: 5px; 
+    font-size: 20px;
+}
+
+.verificar-button,
+.limpar-button,
+.copiar-button {
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: none;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    height: 40px; 
+    line-height: 10px; 
+}
+
+
+
+footer {
+  text-align: center;
+  font-size: 12px;
+  color: #ccc;
+  }
+
+.social{
+    font-size: 30px;
+    margin-left: 230px;
+    position: absolute;
+    top: 622px;
+    left: 650px;
+    cursor: pointer;
+  }
+  
+  body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #242526;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+
+    h1 {
+        justify-content: center;
+        text-align: center;
+        padding: 6px 10px;
+        color: white;
+        height: 50px;
+        line-height: 24px;
+        display: flex;
+        text-shadow: 1px 2px 4px rgba(88, 90, 90, 0.5);
+        }
+
+  main {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 10px;
+    border: none;
+    background-color: transparent;
+  }
+
+  section {
+    padding: 10px;
+    background-color: transparent;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-size: 28px;
+    font-weight: bolder;
+    margin-bottom: 15px;
+    text-align: center;
+    color: white;
+  }
+
+
+  .subtitle {
+    padding: 10px;
+    margin: 10px;
+    font-size: 18px;
+    font-style: inherit;
+    font-weight: inherit;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  input[type="text"]::placeholder {
+    color: #ccc;
+    font-weight: 300;
+    font-size: 15px;
+    text-transform: uppercase;
+  }
+  
+  input[type="text"] {
+    position: relative;
+    width: 800px;
+    margin: 0 auto;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    color: #fff;
+    background-color: #202123;
+    font-size: 16px;
+    font-weight: bold;
+    outline: none;
+    text-align: center;
+    display: block; /* Adicione esta linha para tornar o input um bloco */
+    margin-bottom: 25px; /* Adicione margem inferior para separar dos botões */
+}
+
+
+.chave-box > i {
+    color: white;
+    margin-left: -5px;
+    margin-right: 5px;
+    display: flex;
+    font-size: 22px;
+    align-items: center;
+    height: 25px
+  }
+
+  .chave-box {
+    padding: 15px;
+    margin-left: 18px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: inline-flex;
+    width: 30%;
+    color: cyan;
+    border-radius: 6px;
+    background: #202123;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .chave-box::before {
+  position: absolute;
+  left: 10px;
+  font-weight: bold;
+}
+
+.chave-box:hover {
+  transform: scale(1.10);
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.474);
+}
+
+  .chave-title {
+    margin-right: 10px;
+    font-weight: bold;
+    color: #ccc;
+    text-align: center;
+
+  }
+
+
+.verificar-button:hover,
+.limpar-button:hover,
+.copiar-button:hover {
+    background-color: transparent;
+    border-bottom: 3px solid cyan;
+    border-radius: 0; 
+}
+
+
+.verificar-button,
+.limpar-button,
+.copiar-button {
+    transition: background-color 0.3s ease;
+}
+
+
+.verificar-button i,
+.limpar-button i,
+.copiar-button i {
+    transition: color 0.3s ease; 
+}
+
+  #mensagemErro {
+    color: red; 
+  font-size: 16px;
+  margin-top: 10px; 
+  transition: opacity 0.5s ease; 
+  font-style: italic;
+  font-weight: inherit;
+  text-align: center;
+  font-weight: bold;
+}
+
+#mensagemErro.exibir {
+display: show;
+}
+
+.copied-info-message {
+  color: rgb(103, 238, 103); 
+  font-size: 16px; 
+  margin-top: 10px;
+  transition: opacity 0.5s ease; 
+  font-style: italic;
+  text-align: center;
+}
+
+.voltar-pagina {
+  position: absolute; 
+  top: 20px; 
+  left: 20px; 
+  background-color: transparent; 
+  color: rgb(255, 255, 255);
+  border: none;
+  font-size: 20px;
+}
+
+#ufInfo, #anoMesInfo, #modeloInfo, #serieInfo,
+#cnpjInfo, #serieInfo, #numeroNFInfo, #formaEmissaoInfo, #codigoNumericoInfo, #digitoVerificadorInfo {
+  color: rgb(45, 245, 245);
+  font-weight: bold;
+}
+
+
+
+
